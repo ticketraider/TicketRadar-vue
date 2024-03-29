@@ -130,7 +130,7 @@ export default {
     async cancelTicket(ticketId) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`https://43.200.140.164:8080/tickets/cancel/${ticketId}`, {
+        await axios.delete(`https://43.200.140.164:80/tickets/cancel/${ticketId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           },
