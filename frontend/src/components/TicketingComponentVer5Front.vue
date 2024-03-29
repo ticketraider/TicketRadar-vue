@@ -117,7 +117,7 @@ const submitTicketReservation = async () => {
   const token = localStorage.getItem('token');
 
   try {
-    await axios.post(`http://43.200.140.164:8080/tickets/create`, reservationDetails
+    await axios.post(`https://43.200.140.164:8080/tickets/create`, reservationDetails
         ,
         {
           headers: {

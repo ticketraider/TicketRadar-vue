@@ -76,7 +76,7 @@ const fetchEvents = async (page = 0) => {
 
     // type에 따라 다른 API 호출
     if(props.type === 'likes' || props.type === 'reviews' || props.type === 'rating'|| props.type === 'popularity'){
-      apiUrl = 'http://43.200.140.164:8080/getCachedEventList'
+      apiUrl = 'https://43.200.140.164:8080/getCachedEventList'
       request = {
         params: {
           key: props.type,
@@ -97,7 +97,7 @@ const fetchEvents = async (page = 0) => {
     //   }
     // }
     else {
-      apiUrl = 'http://43.200.140.164:8080/events'
+      apiUrl = 'https://43.200.140.164:8080/events'
       request = {
         params: {
           page: page,
