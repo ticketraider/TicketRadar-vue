@@ -44,7 +44,7 @@ const fetchBookedTicket = async () => {
 
 
   try {
-    const response = await axios.get(`http://43.200.140.164/tickets/ticket-list/${eventId}`, {
+    const response = await axios.get(`http://43.200.140.164:8080/tickets/ticket-list/${eventId}`, {
       params: {date: formattedDate}
     });
     bookedSeatsIds.value = Array.isArray(response.data) ? response.data : [response.data];
@@ -117,7 +117,7 @@ const submitTicketReservation = async () => {
   const token = localStorage.getItem('token');
 
   try {
-    await axios.post(`https://43.200.140.164/tickets/create`, reservationDetails
+    await axios.post(`https://43.200.140.164:8080/tickets/create`, reservationDetails
         ,
         {
           headers: {

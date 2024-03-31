@@ -42,7 +42,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post('https://43.200.140.164/members/signUp', {
+        const response = await axios.post('https://43.200.140.164:8080/members/signUp', {
           email: this.email,
           password: this.password,
           nickname: this.nickname
