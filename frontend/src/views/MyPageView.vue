@@ -1,7 +1,7 @@
 <template>
-  <main style="height: 1450px">
+  <main style="background-color:#EEEAF1; display: flex; justify-content: center">
     <div
-        style="background-color: #aa98ba; padding: 30px; margin: 30px auto; height: 1250px; width: 67%; border-radius: 20px">
+        style="background-color: #D4CBDC; padding: 30px; margin: 30px auto; width: 80%; border-radius: 20px">
       <div class="mypage">
         <div style="display:flex;">
 
@@ -13,7 +13,15 @@
               </button>
               <button type="button"
                       style="background-color: #392365; border-color: #392365; margin: auto 10px 10px 10px"
-                      @click="goTo('tickets')" class="btn btn-primary">내 티켓 목록
+                      @click="goTo('tickets')" class="btn btn-primary">티켓 목록
+              </button>
+              <button type="button"
+                      style="background-color: #392365; border-color: #392365; margin: auto 10px 10px 10px"
+                      @click="goTo('reviews')" class="btn btn-primary">리뷰 목록
+              </button>
+              <button type="button"
+                      style="background-color: #392365; border-color: #392365; margin: auto 10px 10px 10px"
+                      @click="goTo('likes')" class="btn btn-primary">좋아요 목록
               </button>
             </div>
           </aside>

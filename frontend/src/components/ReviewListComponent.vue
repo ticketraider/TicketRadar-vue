@@ -1,5 +1,5 @@
 <template>
-  <form style="color: white; width: 90%; height: 180px; margin: 50px auto auto auto">
+  <form style="color: white; width: 100%; height: 180px; margin: 50px auto auto auto">
     <div style="display: flex">
       <div class="mb-3">
         <input type="text" placeholder="리뷰 제목" v-model="reviewTitle" class="form-control" id="exampleInputEmail1"
@@ -20,20 +20,16 @@
     <div style="text-align: right;">
       <button type="button" class="btn btn-primary"
               style="background-color: #392365; border-color: #392365; margin-left: 15px;"
-              @click="submitReview"
+              @click="checkLoginStatus"
       >리뷰 남기기
       </button>
     </div>
-
   </form>
-  <div class="review-list">
-    <div class="review-grid">
-      <div>
 
-      </div>
+  <div class="review-list">
       <v-row>
         <v-col v-for="review in reviewList" :key="review.id" cols="12">
-          <v-card class="review-card" style="width: 1050px; height: 150px">
+          <v-card class="review-card" style="width: 100%; height: 150px">
             <div style="display: flex;">
               <v-card-title>{{ review.title }}</v-card-title>
               <div style="margin-top: 13px">
@@ -50,8 +46,8 @@
       </v-row>
     </div>
     <!-- 페이지 네이션 -->
-    <div style="width: 100%; margin: 10px">
-      <div class="pagination" style="margin-left: 447px ">
+    <div style="width: 100%; margin-top: 10px; display: flex; justify-content: flex-end">
+      <div class="pagination">
         <v-btn @click="fetchReviews(currentPage - 1)" :disabled="currentPage === 0"
                style="background-color: #0a0925; color: white;">
           이전
@@ -62,7 +58,6 @@
         </v-btn>
       </div>
     </div>
-  </div>
 
   <div class="text-center">
     <v-container>
@@ -86,6 +81,7 @@
 import {ref, onMounted} from 'vue';
 import axios from 'axios';
 import {useRouter} from 'vue-router';
+import router from "@/router/router";
 
 export default {
   data() {
@@ -131,7 +127,6 @@ export default {
     return {eventId, reviewList, currentPage, totalPages, fetchReviews, displayRating};
   },
   methods: {
-
     async submitReview() {
       try {
         const reviewDetail = {
@@ -164,14 +159,24 @@ export default {
           alert("알수없는 에러가 발생 했습니다.")
         }
       }
-    }
+    },
+    checkLoginStatus() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        alert("로그인이 필요한 기능입니다.");
+        router.push({path: "/login"})
+        // 로그인이 필요한 상황이므로, 로그인 페이지로 리다이렉트하는 로직도 추가할 수 있습니다.
+        // 예: router.push('/login');
+      }else {
+        this.submitReview()
+      }
+    },
   },
 }
 </script>
 
 <style scoped>
 .review-list {
-  padding: 20px;
 }
 
 .review-grid {

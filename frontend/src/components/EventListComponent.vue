@@ -2,8 +2,8 @@
   <div class="event-list">
     <div class="event-grid">
       <v-card v-for="event in eventList" :key="event.id" class="event-card">
-        <v-card class="mx-auto" style="width: 300px; background-color: white">
-          <v-img height="400px" :src="event.posterImage" cover></v-img>
+        <v-card class="mx-auto" style="width: 200px; background-color: white">
+          <v-img :src="event.posterImage" contain></v-img>
           <v-card-title>{{ event.title }}</v-card-title>
           <v-card-subtitle>{{ event.eventInfo }}</v-card-subtitle>
           <v-card-actions>
@@ -115,18 +115,17 @@ const fetchEvents = async (page = 0) => {
       }
     }
 
+    console.log(`${props.type} request : `, request)
     const response = await axios.get(apiUrl, request);
     console.log(`${props.type} Response : `, response)
 
-
-    if(props.type ==='')
-      eventList.value = response.data.content;
-    else
+    if(props.type === 'popularity')
       eventList.value = response.data;
-
-    totalPages.value = response.data.totalPages;
-    currentPage.value = page;
-
+    else{
+      eventList.value = response.data.content;
+      totalPages.value = response.data.totalPages;
+      currentPage.value = page;
+    }
     console.log(`type : ${props.type} : ${eventList.value}`)
   } catch (error) {
     console.error('이벤트 목록을 불러오는 동안 오류가 발생했습니다:', error);
@@ -156,7 +155,7 @@ const reserve = (eventId) => {
 .event-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 35px;
 }
 
 .event-card {
