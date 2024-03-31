@@ -22,7 +22,7 @@ function resetModal() {
 const fetchEventDetail = async () => {
   const eventId = Number(route.params.eventId);
   try {
-    const response = await axios.get(`https://43.200.140.164:8080/events/${eventId}`);
+    const response = await axios.get(`https://api.ticketradar.net/events/${eventId}`);
     event.value = response.data;
     // 이벤트 정보가 로드되면 해당 이벤트의 날짜로 date ref를 업데이트합니다.
     date.value = new Date(event.value.startDate);
