@@ -59,8 +59,11 @@ const router = useRouter();
 let email = ''; // 사용자 입력을 저장할 변수
 let password = ''; // 사용자 입력을 저장할 변수
 
-const signUp = () => {
-  router.push({path: "/sign-up"})
+// const signUp = () => {
+//   router.push({path: "/sign-up"})
+// }
+function signUp() {
+  this.$router.push("/sign-up");
 }
 
 const signIn = async () => {
