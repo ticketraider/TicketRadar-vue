@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <template>
   <header>
     <HeaderViewVer/>
