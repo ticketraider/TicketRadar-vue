@@ -3,7 +3,8 @@ module.exports = defineConfig({
   transpileDependencies: true,
 
     devServer: {
-        port: 3000, // 원하는 포트로 변경
+        // port: 80, // 원하는 포트로 변경
+      // proxy: 'http://43.200.140.164:8080'
     },
 
   pluginOptions: {
