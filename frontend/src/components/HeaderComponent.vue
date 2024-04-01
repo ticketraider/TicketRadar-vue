@@ -98,9 +98,9 @@ const goHome = () => {
         <li><a href="#" class="category" @click="goEventList('뮤지컬')">뮤지컬</a></li>
         <li><a href="#" class="category" @click="goEventList('콘서트')">콘서트</a></li>
         <li><a href="#" class="category" @click="goEventList('스포츠')">스포츠</a></li>
-        <li><a href="#" class="category" @click="goEventList('전시/행사')">전시/행사</a></li>
+<!--        <li><a href="#" class="category" @click="goEventList('전시/행사')">전시/행사</a></li>-->
         <li><a href="#" class="category" @click="goEventList('클래식/무용')">클래식/무용</a></li>
-        <li><a href="#" class="category" @click="goEventList('아동/가족')">아동/가족</a></li>
+<!--        <li><a href="#" class="category" @click="goEventList('아동/가족')">아동/가족</a></li>-->
         <li><a href="#" class="category" @click="goEventList('연극')">연극</a></li>
       </ul>
     </nav>
