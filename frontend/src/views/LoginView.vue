@@ -1,11 +1,10 @@
 <template>
-  <main style="height: 750px">
+  <main style="height: 810px; background-color: #EEEAF1; display: flex; justify-content: center; align-items: center">
     <div
-        style="background-color: #aa98ba; padding: 30px; margin: 30px auto; height: 600px; width: 60%; border-radius: 20px">
-
-      <form style="color: white; width: 500px; height: 400px; margin: 140px auto auto auto">
-        <div style="background-color: #392365; text-align: center; border-radius: 5px; margin-bottom: 20px">
-          <h2>로그인</h2>
+        style="background-color: #0B0722; border-radius: 12px; width: 40%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <form style="color: white;">
+        <div style="display: flex; justify-content: center">
+          <img :src="require('@/assets/ticketRadar.png')" style="width: 400px">
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">이메일</label>
@@ -17,22 +16,35 @@
           <input type="password" placeholder="비밀번호를 입력해주세요" class="form-control" id="exampleInputPassword1"
                  v-model="password">
         </div>
-        <div style="text-align: right">
-          <button class="btn btn-primary" style="background-color: #263e5e; border-color: #263e5e"
-                  @click="signUp">회원 가입
-          </button>
-          <button type="button" class="btn btn-primary"
-                  style="background-color: #392365; border-color: #392365; margin-left: 15px;"
-                  @click="signIn">로그인
-          </button>
-<!--          <button type="button" class="btn btn-primary"-->
-<!--                  style="background-color: #392365; border-color: #392365; margin-left: 15px;"-->
-<!--                  @click="displayToken">토큰 출력-->
-<!--          </button>-->
-          <button type="button" class="btn btn-primary"
-                  style="background-color: #392365; border-color: #392365; margin-left: 15px;"
-                  @click="logOut">로그아웃
-          </button>
+        <div>
+          <div style="margin-top: 10px; width: 100%">
+            <button type="button" class="btn btn-primary"
+                    style="font-weight:bold; background-color: #392365; border-color: #392365; width: 100%; height: 42px;"
+                    @click="signIn">로그인
+            </button>
+            <button style="width: 100%; color: #CABED4; height: 42px; margin-top: 30px;"
+                    @click="signUp">❗아직 회원이 아니신가요?
+            </button>
+          </div>
+          <div style="display: flex; width: 100%; justify-content: center">
+            <button style="margin-top: 10px; margin-left: 20px;" @click="kakaoSocialSignIn">
+              <v-img style="height: 50px; width: 240px;" :src="require('@/assets/kakao_login_large_narrow.png')" cover></v-img>
+            </button>
+            <button style="margin-top: 10px" @click="googleSocialSignIn">
+              <v-img style="height: 50px; width: 240px;" :src="require('@/assets/web_neutral_sq_SU@2x.png')" cover></v-img>
+            </button>
+          </div>
+
+
+
+          <!--          <button type="button" class="btn btn-primary"-->
+          <!--                  style="background-color: #392365; border-color: #392365; margin-left: 15px;"-->
+          <!--                  @click="displayToken">토큰 출력-->
+          <!--          </button>-->
+          <!--          <button type="button" class="btn btn-primary"-->
+          <!--                  style="background-color: #392365; border-color: #392365; margin-left: 15px;"-->
+          <!--                  @click="logOut">로그아웃-->
+          <!--          </button>-->
         </div>
       </form>
     </div>
@@ -66,9 +78,10 @@ const signIn = async () => {
     // 이후에는 토큰을 사용하여 요청을 보낼 때마다 헤더에 포함하여 전송
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-
-    await router.push('/event-list');
-    location.reload();// 이벤트 목록 페이지로 이동
+    await router.back()
+    location.reload()
+    // await router.push('/event-list');
+    // location.reload();// 이벤트 목록 페이지로 이동
 
   } catch (error) {
     // 로그인 실패 시 처리
@@ -76,14 +89,28 @@ const signIn = async () => {
     alert("로그인에 실패하였습니다.");
   }
 }
-const logOut = async () => {
-  if (localStorage.getItem('token')) {
-    localStorage.removeItem('token');
-    alert("로그아웃 되었습니다.");
-  } else {
-    alert("로그인 되어있지 않습니다.");
-  }
+const kakaoSocialSignIn = async () => {
+  window.open("http://localhost:8080/oauth2/login/kakao", '', 'width=400,height=600')
+  const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
+  localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
+  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  console.log("소셜 로그인 함수가 호출되었습니다.");
 }
+const googleSocialSignIn = async () => {
+  window.open("http://localhost:8080/oauth2/login/google", '', 'width=400,height=600')
+  const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
+  localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
+  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  console.log("소셜 로그인 함수가 호출되었습니다.");
+}
+// const logOut = async () => {
+//   if (localStorage.getItem('token')) {
+//     localStorage.removeItem('token');
+//     alert("로그아웃 되었습니다.");
+//   } else {
+//     alert("로그인 되어있지 않습니다.");
+//   }
+// }
 
 
 // const displayToken = () => {
