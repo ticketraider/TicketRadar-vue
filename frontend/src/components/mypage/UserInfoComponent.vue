@@ -62,7 +62,7 @@ const currentPassword = ref("");
 const currentUserNickname = ref("");
 const currentUserEmail = ref("");// 유저 현재 닉네임
 const isPasswordVerified = ref(false); // 비밀번호가 확인되었는지 나타내는 상태
-const apiUrl = 'http://localhost:8080';
+const apiUrl = 'https://api.ticketradar.net';
 const token = localStorage.getItem('token');
 
 // 현재 비밀번호 확인 후 유저 정보 업데이트 폼 표시

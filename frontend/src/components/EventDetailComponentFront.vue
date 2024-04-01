@@ -35,7 +35,7 @@ const likeEvent = async () => {
   const token = localStorage.getItem('token'); // 실제로는 사용자 인증 토큰을 여기에 할당합니다.
 
   try {
-    await axios.post(`http://localhost:8080/likes?eventId=${eventId}`, {}, {
+    await axios.post(`https://api.ticketradar.net/likes?eventId=${eventId}`, {}, {
       headers: {
         Authorization: `Bearer ${token}` // 인증 토큰을 Bearer 토큰으로 사용
       }

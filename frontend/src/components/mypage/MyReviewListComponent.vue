@@ -158,7 +158,7 @@ export default {
       this.loading = true;
       try {
         const token = localStorage.getItem('token'); // JWT 토큰
-        const response = await axios.get(`http://localhost:8080/reviews/members`, { // URL 변경 가정
+        const response = await axios.get(`https://api.ticketradar.net/reviews/members`, { // URL 변경 가정
           params: {
             page: this.page,
             size: this.size
@@ -199,7 +199,7 @@ export default {
         rating: this.updateRating,
       };
       try {
-        await axios.put(`http://localhost:8080/reviews/update/${reviewId}`,  // URL 변경 가정
+        await axios.put(`https://api.ticketradar.net/reviews/update/${reviewId}`,  // URL 변경 가정
           updateReviewDetails
         );
         // 요청 성공 후 리뷰 목록 갱신
@@ -212,7 +212,7 @@ export default {
     },
     async deleteReview(reviewId) { // 메소드 변경 가정
       try {
-        await axios.delete(`http://localhost:8080/reviews/delete/${reviewId}`);
+        await axios.delete(`https://api.ticketradar.net/reviews/delete/${reviewId}`);
         // 요청 성공 후 리뷰 목록 갱신
         this.fetchReviews(); // 변경된 부분
         alert('리뷰가 성공적으로 취소되었습니다.'); // 메시지 변경
