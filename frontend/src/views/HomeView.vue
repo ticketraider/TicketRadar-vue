@@ -50,6 +50,7 @@ function getTokenFromCookieAndStoreLocally() {
     if (cookieToken) {
       // 쿠키에서 토큰 값을 찾았을 경우 localStorage에 저장
       localStorage.setItem('token', cookieToken);
+      document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     }
   }
 }
