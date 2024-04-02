@@ -32,7 +32,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import EventList from "@/components/EventListComponent.vue";
-import axios from "axios";
 
 const isEventListLoaded = ref(false);
 onMounted(() => {
