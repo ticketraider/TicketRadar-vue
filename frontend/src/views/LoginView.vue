@@ -97,7 +97,7 @@ const kakaoSocialSignIn = async () => {
   console.log("소셜 로그인 함수가 호출되었습니다.");
 }
 const googleSocialSignIn = async () => {
-  location.href = "https://api.ticketradar.net/oauth2/login/google";
+  window.location.href = "https://api.ticketradar.net/oauth2/login/google";
     location.reload();
     const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
     if (token) {
