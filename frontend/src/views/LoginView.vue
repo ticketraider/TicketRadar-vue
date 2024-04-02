@@ -90,62 +90,27 @@ const signIn = async () => {
   }
 }
 const kakaoSocialSignIn = async () => {
-  location.href = "https://api.ticketradar.net/oauth2/login/kakao";
-  // function extractJwtTokenFromCookies() {
-  //   const cookies = document.cookie.split(';');
-  //   for (let i = 0; i < cookies.length; i++) {
-  //     const cookie = cookies[i].trim(); // 공백을 제거합니다.
-  //     if (cookie.startsWith('token=')) {
-  //       // 'jwt_token=' 부분을 제외하고 추출하여 반환합니다.
-  //       return cookie.substring('token='.length);
-  //     }
-  //   }
-  //   return null;
-  // }
-  // const token = extractJwtTokenFromCookies()
-  console.log(token)
+  window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600')
   const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
   localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   console.log("소셜 로그인 함수가 호출되었습니다.");
 }
-// const googleSocialSignIn = async () => {
-//   location.href = "https://api.ticketradar.net/oauth2/login/google";
-//     location.reload();
-//     const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
-//     if (token) {
-//       localStorage.setItem('token', token);
-//     }
-//     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-//     console.log("소셜 로그인 함수가 호출되었습니다.");
-//   // location.reload()
-//   // const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
-//   // localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
-//   // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-//   // console.log("소셜 로그인 함수가 호출되었습니다.");
-// }
 const googleSocialSignIn = async () => {
-  window.open("https://api.ticketradar.net/oauth2/login/google", '', 'width=400,height=600');
-
-  // 리디렉션 이후에 실행되어야 할 코드
-  const handleLoginResponse = async () => {
-    // 페이지 새로고침
+  location.href = "https://api.ticketradar.net/oauth2/login/google";
     location.reload();
-    // 쿠키에서 토큰 읽기
     const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
-    // 토큰이 있다면 로컬 스토리지에 저장
     if (token) {
       localStorage.setItem('token', token);
     }
-    // 쿠키에 있는 토큰 삭제
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     console.log("소셜 로그인 함수가 호출되었습니다.");
-  };
-
-  // 리디렉션 이후에 실행되어야 할 코드를 호출
-  await handleLoginResponse();
+  // location.reload()
+  // const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
+  // localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
+  // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  // console.log("소셜 로그인 함수가 호출되었습니다.");
 }
-
 // const logOut = async () => {
 //   if (localStorage.getItem('token')) {
 //     localStorage.removeItem('token');
