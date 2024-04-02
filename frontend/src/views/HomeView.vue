@@ -36,7 +36,7 @@ import axios from "axios";
 
 const isEventListLoaded = ref(false);
 onMounted(() => {
-  const token = this.$cookies.get('token');
+  const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
   if (token) {
     localStorage.setItem('token', token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
