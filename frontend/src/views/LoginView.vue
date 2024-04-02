@@ -90,11 +90,17 @@ const signIn = async () => {
   }
 }
 const kakaoSocialSignIn = async () => {
-  window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600');
+  const loginWindow = window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600');
+// 타임아웃 설정 (예: 1초 후에 새 창이 닫히도록 설정)
+  setTimeout(() => {
+    if (!loginWindow.closed) { // 새 창이 아직 열려있는지 확인
+      loginWindow.close(); // 새 창 닫기
+    }
+  }, 1000); // 5초(5000밀리초) 후에 실행
 
   const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
   localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
-  // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   console.log("소셜 로그인 함수가 호출되었습니다.");
 }
 const googleSocialSignIn = async () => {
