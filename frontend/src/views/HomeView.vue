@@ -36,6 +36,7 @@ import axios from "axios";
 
 const isEventListLoaded = ref(false);
 onMounted(() => {
+  console.log(홈 화면 호출)
   const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
   if (token) {
     localStorage.setItem('token', token);
