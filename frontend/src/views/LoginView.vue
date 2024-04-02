@@ -91,36 +91,18 @@ const signIn = async () => {
 }
 const kakaoSocialSignIn = async () => {
   // 새 창을 엽니다.
-  const loginWindow = window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600');
+  window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600');
 
-  // 로그인이 완료되고 새 창이 닫힐 때까지 기다립니다.
-  const checkTokenInterval = setInterval(() => {
-    // 새 창이 닫혔는지 확인합니다.
-    if (loginWindow.closed) {
-      // 새 창이 닫혔다면 쿠키에서 토큰을 읽어옵니다.
-      const token = document.cookie.replace(/((?:^|.*;\s*)token\s*\s*([^;]*).*$)|^.*$/, "$1");
-      if (token) {
-        // 토큰이 존재하면 로컬 스토리지에 저장합니다.
-        localStorage.setItem('token', token);
-        // 쿠키에서 토큰을 삭제합니다.
-        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        console.log("소셜 로그인 함수가 호출되었습니다.");
-      }
-      // 인터벌을 중지합니다.
-      clearInterval(checkTokenInterval);
-    }
-  }, 1000); // 1초마다 새 창 상태를 확인합니다.
-  // window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600')
-  // const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
-  // localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
+  const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
+  localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
   // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  // console.log("소셜 로그인 함수가 호출되었습니다.");
+  console.log("소셜 로그인 함수가 호출되었습니다.");
 }
 const googleSocialSignIn = async () => {
   window.open("https://api.ticketradar.net/oauth2/login/google", '', 'width=400,height=600')
   const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
   localStorage.setItem('token', token);
-  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   console.log("소셜 로그인 함수가 호출되었습니다.");
 }
 // const logOut = async () => {
