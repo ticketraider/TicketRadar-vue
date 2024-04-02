@@ -28,6 +28,7 @@ const routes = [
     //     component: () => import('@/views/MyTicketListViewBack.vue'),
     //     meta: { requiresAuth: true } // 로그인 필요 여부를 메타 필드로 추가
     // },
+
     {
         path: '/login',
         name: 'Login',
