@@ -95,6 +95,7 @@ const kakaoSocialSignIn = async () => {
   await axios.post("https://api.ticketradar.net/oauth2/login/kakao", {})
       .then(response => {
         const token = response.headers['authorization'];
+        console.log(token)
         const accessToken = token.split(' ')[1];
         localStorage.setItem('token', accessToken)
       })
