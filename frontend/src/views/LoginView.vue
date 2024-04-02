@@ -90,17 +90,30 @@ const signIn = async () => {
   }
 }
 const kakaoSocialSignIn = async () => {
-  window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600');
-  location.reload()
-  // const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
-  const getCookie = (token) => {
-    this.$cookies.get(token)
+  location.href = "https://api.ticketradar.net/oauth2/login/kakao";
+  function extractJwtTokenFromCookies() {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim(); // 공백을 제거합니다.
+      if (cookie.startsWith('token=')) {
+        // 'jwt_token=' 부분을 제외하고 추출하여 반환합니다.
+        return cookie.substring('jwt_token='.length);
+      }
+    }
+    // JWT 토큰이 없으면 null을 반환합니다.
+    return null;
   }
-  const getCookieToken = getCookie("token")
-  console.log(getCookieToken)
-  // localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
-  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  console.log("소셜 로그인 함수가 호출되었습니다.");
+  const token = extractJwtTokenFromCookies()
+  console.log(token)
+  // const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
+  // const getCookie = (token) => {
+  //   this.$cookies.get(token)
+  // }
+  // const getCookieToken = getCookie("token")
+  // console.log(getCookieToken)
+  // // localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
+  // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  // console.log("소셜 로그인 함수가 호출되었습니다.");
 }
 const googleSocialSignIn = async () => {
   window.open("https://api.ticketradar.net/oauth2/login/google", '', 'width=400,height=600')
