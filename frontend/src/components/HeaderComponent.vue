@@ -62,7 +62,7 @@ function register() {
 
 function logout() {
   // 로그아웃 로직 실행, 예: 토큰 삭제
-  this.$cookies.removeAll()
+  this.cookies.removeAll()
   localStorage.removeItem('token');
   location.reload(); // 간단하게 페이지를 새로고침하여 상태를 초기화합니다.
 }
