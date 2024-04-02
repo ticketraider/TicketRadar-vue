@@ -81,8 +81,15 @@ export const router = createRouter({
 
 // 네비게이션 가드 설정
 router.beforeEach((to, from, next) => {
-    const isAuthenticated = localStorage.getItem('token') || document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1"); // 토큰 가져오기
-
+    let isAuthenticated = localStorage.getItem('token')
+    if (!isAuthenticated) {
+        // 로컬 스토리지에 토큰이 없으면 쿠키에서 토큰을 가져옴
+        const cookieToken = getCookie('token');
+        if (cookieToken) {
+            isAuthenticated = cookieToken;
+            localStorage.setItem('token', isAuthenticated);
+        }
+    }
     if (to.path === '/login' && isAuthenticated) {
         // 이미 로그인한 사용자는 로그인 페이지에 접근할 수 없도록 리디렉션
         next('/');
@@ -108,6 +115,17 @@ router.beforeEach((to, from, next) => {
     }
     next(); // 다음 페이지로 이동
 });
-
+function getCookie(name) {
+    const cookieString = document.cookie;
+    const cookies = cookieString.split('; ');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const [cookieName, cookieValue] = cookie.split('=');
+        if (cookieName === name) {
+            return cookieValue;
+        }
+    }
+    return null;
+}
 // 생성한 라우터 내보내기
 export default router;
