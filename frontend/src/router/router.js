@@ -82,16 +82,16 @@ export const router = createRouter({
 // 네비게이션 가드 설정
 router.beforeEach((to, from, next) => {
     let isAuthenticated = localStorage.getItem('token')
-    if (!isAuthenticated || isAuthenticated === '') {
-        // 쿠키에서 토큰 값 가져오기
-        const cookieToken = document.cookie.replace(/((?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-        if (cookieToken) {
-            // 쿠키에서 토큰 값을 찾았을 경우 localStorage에 저장
-            localStorage.setItem('token', cookieToken);
-            isAuthenticated = cookieToken;
-            document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-        }
-    }
+    // if (!isAuthenticated || isAuthenticated === '') {
+    //     // 쿠키에서 토큰 값 가져오기
+    //     const cookieToken = document.cookie.replace(/((?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    //     if (cookieToken) {
+    //         // 쿠키에서 토큰 값을 찾았을 경우 localStorage에 저장
+    //         localStorage.setItem('token', cookieToken);
+    //         isAuthenticated = cookieToken;
+    //         document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    //     }
+    // }
     if (to.path === '/login' && isAuthenticated) {
         // 이미 로그인한 사용자는 로그인 페이지에 접근할 수 없도록 리디렉션
         next('/');
