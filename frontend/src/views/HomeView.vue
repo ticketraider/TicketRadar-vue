@@ -36,15 +36,6 @@ import axios from "axios";
 
 const isEventListLoaded = ref(false);
 onMounted(() => {
-  location.reload()
-  console.log("홈 화면 호출");
-  const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
-  if (token) {
-    localStorage.setItem('token', token);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    location.reload()
-    this.$cookies.remove('token');
-  }
   // setTimeout을 사용하여 2초 후에 내부 컴포넌트 로딩이 완료되었다고 가정
   setTimeout(() => {
     // 내부 컴포넌트 로딩이 완료되면 isEventListLoaded 값을 true로 변경
