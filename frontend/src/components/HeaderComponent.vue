@@ -2,6 +2,7 @@
 import {computed, ref} from 'vue';
 import { useRouter } from 'vue-router';
 import {jwtDecode} from "jwt-decode";
+import axios from "axios";
 
 const router = useRouter();
 const searchText = ref(''); // 검색어
@@ -60,11 +61,30 @@ function register() {
   router.push({ path: "/sign-up" }); // 'register'는 회원가입 페이지의 라우터 이름입니다.
 }
 
+// function logout() {
+//   // 로그아웃 로직 실행, 예: 토큰 삭제
+//   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+//   localStorage.removeItem('token');
+//   location.reload(); // 간단하게 페이지를 새로고침하여 상태를 초기화합니다.
+// }
 function logout() {
-  // 로그아웃 로직 실행, 예: 토큰 삭제
-  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  localStorage.removeItem('token');
-  location.reload(); // 간단하게 페이지를 새로고침하여 상태를 초기화합니다.
+  // 백엔드 서버로 로그아웃 요청을 보냅니다.
+  axios.post("https://api.ticketradar.net/logout")
+      .then(() => {
+        // 세션 파기에 성공한 경우, 쿠키와 로컬 스토리지에서 토큰을 삭제합니다.
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        localStorage.removeItem('token');
+        // 페이지를 다시 로드하여 상태를 초기화합니다.
+        location.reload();
+      })
+      .catch(error => {
+        // 로그아웃 요청 실패 시에 대한 처리
+        console.error("로그아웃 요청 중 오류 발생:", error);
+        // 쿠키와 로컬 스토리지에서 토큰을 삭제하고 페이지를 다시 로드합니다.
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        localStorage.removeItem('token');
+        location.reload();
+      });
 }
 
 function goToMyPage() {
