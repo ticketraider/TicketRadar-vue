@@ -89,8 +89,8 @@ const signIn = async () => {
     alert("로그인에 실패하였습니다.");
   }
 }
-const kakaoSocialSignIn = async () => {
-  window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600')
+const kakaoSocialSignIn = () => {
+  window.open("https://api.ticketradar.net/oauth2/kakao", '', 'width=400,height=600')
   const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
   localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
