@@ -35,25 +35,25 @@ import EventList from "@/components/EventListComponent.vue";
 
 const isEventListLoaded = ref(false);
 onMounted(() => {
-  getTokenFromCookieAndStoreLocally();
+  // getTokenFromCookieAndStoreLocally();
   // setTimeout을 사용하여 2초 후에 내부 컴포넌트 로딩이 완료되었다고 가정
   setTimeout(() => {
     // 내부 컴포넌트 로딩이 완료되면 isEventListLoaded 값을 true로 변경
     isEventListLoaded.value = true;
   }, 2000); // 2초 후에 로딩이 완료되었다고 가정
 });
-function getTokenFromCookieAndStoreLocally() {
-  const isAuthenticated = localStorage.getItem('token');
-  if (!isAuthenticated || isAuthenticated === '') {
-    // 쿠키에서 토큰 값 가져오기
-    const cookieToken = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-    if (cookieToken) {
-      // 쿠키에서 토큰 값을 찾았을 경우 localStorage에 저장
-      localStorage.setItem('token', cookieToken);
-      document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    }
-  }
-}
+// function getTokenFromCookieAndStoreLocally() {
+//   const isAuthenticated = localStorage.getItem('token');
+//   if (!isAuthenticated || isAuthenticated === '') {
+//     // 쿠키에서 토큰 값 가져오기
+//     const cookieToken = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+//     if (cookieToken) {
+//       // 쿠키에서 토큰 값을 찾았을 경우 localStorage에 저장
+//       localStorage.setItem('token', cookieToken);
+//       document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+//     }
+//   }
+// }
 </script>
 
 
