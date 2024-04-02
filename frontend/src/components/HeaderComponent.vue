@@ -2,6 +2,7 @@
 import {computed, ref} from 'vue';
 import { useRouter } from 'vue-router';
 import {jwtDecode} from "jwt-decode";
+import axios from "axios";
 
 const router = useRouter();
 const searchText = ref(''); // 검색어
@@ -61,8 +62,9 @@ function register() {
 }
 
 function logout() {
-  // 로그아웃 로직 실행, 예: 토큰 삭제
-  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  axios.post("https://api.ticketradar.net/logout")
+
+  // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   localStorage.removeItem('token');
   // location.reload(); // 간단하게 페이지를 새로고침하여 상태를 초기화합니다.
 }
