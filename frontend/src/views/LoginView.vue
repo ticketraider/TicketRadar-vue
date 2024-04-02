@@ -110,29 +110,14 @@ const kakaoSocialSignIn = async () => {
   console.log("소셜 로그인 함수가 호출되었습니다.");
 }
 const googleSocialSignIn = async () => {
-  const loginWindow = window.open("https://api.ticketradar.net/oauth2/login/google", '', 'width=400,height=600')
-  // 새 창에서 로그인 처리 후에 실행되어야 할 코드
-  const handleLoginResponse = async () => {
-    // 페이지 새로고침
+  location.href = "https://api.ticketradar.net/oauth2/login/google";
     location.reload();
-    // 쿠키에서 토큰 읽기
     const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
-    // 토큰이 있다면 로컬 스토리지에 저장
     if (token) {
       localStorage.setItem('token', token);
     }
-    // 쿠키에 있는 토큰 삭제
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     console.log("소셜 로그인 함수가 호출되었습니다.");
-  };
-
-  // 새 창이 닫힐 때까지 주기적으로 확인하여 로그인 처리를 감지
-  const checkLoginInterval = setInterval(() => {
-    if (loginWindow.closed) {
-      clearInterval(checkLoginInterval); // 감지 타이머 해제
-      handleLoginResponse(); // 로그인 처리
-    }
-  }, 1000); // 1초마다 새 창 닫힘 여부 확인
   // location.reload()
   // const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
   // localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
