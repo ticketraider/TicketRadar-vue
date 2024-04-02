@@ -90,8 +90,7 @@ const signIn = async () => {
   }
 }
 const kakaoSocialSignIn = async () => {
-  window.location.href = "https://api.ticketradar.net/oauth2/login/kakao"
-  // window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600');
+  window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600');
 
   const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
   localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
