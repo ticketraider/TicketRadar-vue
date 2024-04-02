@@ -41,6 +41,7 @@ onMounted(() => {
     isEventListLoaded.value = true;
   }, 2000); // 2초 후에 로딩이 완료되었다고 가정
 });
+
 </script>
 
 
