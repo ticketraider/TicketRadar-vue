@@ -81,7 +81,7 @@ export const router = createRouter({
 
 // 네비게이션 가드 설정
 router.beforeEach((to, from, next) => {
-    const isAuthenticated = localStorage.getItem('token'); // 토큰 가져오기
+    const isAuthenticated = localStorage.getItem('token') || document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1"); // 토큰 가져오기
 
     if (to.path === '/login' && isAuthenticated) {
         // 이미 로그인한 사용자는 로그인 페이지에 접근할 수 없도록 리디렉션
