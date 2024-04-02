@@ -2,7 +2,6 @@
 import {computed, ref} from 'vue';
 import { useRouter } from 'vue-router';
 import {jwtDecode} from "jwt-decode";
-import axios from "axios";
 
 const router = useRouter();
 const searchText = ref(''); // 검색어
