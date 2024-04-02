@@ -98,7 +98,7 @@ const kakaoSocialSignIn = async () => {
     // 새 창이 닫혔는지 확인합니다.
     if (loginWindow.closed) {
       // 새 창이 닫혔다면 쿠키에서 토큰을 읽어옵니다.
-      const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      const token = document.cookie.replace(/((?:^|.*;\s*)token\s*\s*([^;]*).*$)|^.*$/, "$1");
       if (token) {
         // 토큰이 존재하면 로컬 스토리지에 저장합니다.
         localStorage.setItem('token', token);
