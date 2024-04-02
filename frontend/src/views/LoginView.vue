@@ -90,19 +90,23 @@ const signIn = async () => {
   }
 }
 const kakaoSocialSignIn = async () => {
-  // window.location.href = "https://api.ticketradar.net/oauth2/login/kakao"
-      // "?redirect_uri=https://www.ticketradar.net/oauth2/callback/kakao"
-  window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600')
-  window.location.reload()
-  const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
-  localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
-  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+  // window.open("https://api.ticketradar.net/oauth2/login/kakao", '', 'width=400,height=600')
+  await axios.post("https://api.ticketradar.net/oauth2/login/kakao", {})
+      .then(response => {
+        const token = response.headers['authorization'];
+        const accessToken = token.split(' ')[1];
+        localStorage.setItem('token', accessToken)
+      })
+
+  // const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
+  // localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
+  // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   console.log("소셜 로그인 함수가 호출되었습니다.");
 }
 const googleSocialSignIn = async () => {
-  // window.location.href = "https://api.ticketradar.net/oauth2/login/google?redirect_uri=https://www.ticketradar.net/oauth2/callback/google"
+
   window.open("https://api.ticketradar.net/oauth2/login/google", '', 'width=400,height=600')
-  window.location.reload()
   const token = document.cookie.replace(/(?:^|.*;\s*)token\s*=\s*([^;]*).*$|^.*$/, "$1");
   localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
