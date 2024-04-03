@@ -17,7 +17,7 @@ const searchResult = ref('');
 const searchEvent = async () => {
   try {
     console.log("요청 : ", searchText.value);
-    const response = await axios.get('https://www.ticketradar.net/search', {
+    const response = await axios.get('https://api.ticketradar.net/search', {
       params: {
         eventTitle: searchText.value
       }
@@ -33,7 +33,7 @@ const searchEvent = async () => {
 const cachingKeywords = async () => {
   try {
     console.log("요청 : ", searchText.value);
-    const response = await axios.get('https://www.ticketradar.net/popularEventList', {
+    const response = await axios.get('https://api.ticketradar.net/popularEventList', {
       params: {
         limit: 5
       }
