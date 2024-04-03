@@ -4,14 +4,14 @@
       <h2>유저 정보</h2>
     </div>
 
-    <div v-if="!isPasswordVerified" class="loading" style="text-align: center;">
-      <div style="width: 400px; margin: 0 auto;">
-        <input type="password" v-model="currentPassword" placeholder="현재 비밀번호를 입력해주세요" class="form-control">
-        <button type="button" class="btn btn-primary" style="margin-top: 10px; background-color: #392365;" @click="verifyCurrentPassword">비밀번호 확인</button>
-      </div>
-    </div>
+<!--    <div v-if="!isPasswordVerified" class="loading" style="text-align: center;">-->
+<!--      <div style="width: 400px; margin: 0 auto;">-->
+<!--        <input type="password" v-model="currentPassword" placeholder="현재 비밀번호를 입력해주세요" class="form-control">-->
+<!--        <button type="button" class="btn btn-primary" style="margin-top: 10px; background-color: #392365;" @click="verifyCurrentPassword">비밀번호 확인</button>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <form v-if="isPasswordVerified" style="margin-top: 20px;">
+    <form style="margin-top: 20px;">
       <div class="card-content">
         <label class="form-label">유저 정보 변경</label>
         <div class="mb-3">
@@ -38,45 +38,49 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from 'axios';
 import {jwtDecode} from "jwt-decode";
 
 // 상태 관리
 const password = ref("");
 const nickname = ref("");
-const currentPassword = ref("");
+// const currentPassword = ref("");
 const currentUserNickname = ref("");
 const currentUserEmail = ref("");// 유저 현재 닉네임
-const isPasswordVerified = ref(false); // 비밀번호가 확인되었는지 나타내는 상태
+// const isPasswordVerified = ref(false); // 비밀번호가 확인되었는지 나타내는 상태
 const apiUrl = 'https://api.ticketradar.net';
 const token = localStorage.getItem('token');
 
+onMounted(() => {
+  fetchUserInfo();
+});
+
 // 현재 비밀번호 확인 후 유저 정보 업데이트 폼 표시
-async function verifyCurrentPassword() {
-  try {
-    console.log(token)
-    console.log(currentPassword.value)
-    const response = await axios.post(`${apiUrl}/members/verify-password`, {}, {
-      params: {
-        currentPassword: currentPassword.value
-      },
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    });
-    await fetchUserInfo();
-    if (response.data.success) {
-      isPasswordVerified.value = true;
-      // 비밀번호 확인 성공 시, 업데이트 폼 표시
-    } else {
-      alert('비밀번호가 일치하지 않습니다.');
-    }
-  } catch (error) {
-    console.error('비밀번호 확인 중 오류가 발생했습니다.', error);
-    alert('비밀번호가 일치하지 않습니다.');
-  }
-}
+// async function verifyCurrentPassword() {
+//   try {
+//     console.log(token)
+//     console.log(currentPassword.value)
+//     const response = await axios.post(`${apiUrl}/members/verify-password`, {}, {
+//       params: {
+//         currentPassword: currentPassword.value
+//       },
+//       headers: {
+//         Authorization: `Bearer ${token}`
+//       },
+//     });
+//     await fetchUserInfo();
+//     if (response.data.success) {
+//       isPasswordVerified.value = true;
+//       // 비밀번호 확인 성공 시, 업데이트 폼 표시
+//     } else {
+//       alert('비밀번호가 일치하지 않습니다.');
+//     }
+//   } catch (error) {
+//     console.error('비밀번호 확인 중 오류가 발생했습니다.', error);
+//     alert('비밀번호가 일치하지 않습니다.');
+//   }
+// }
 
 // 유저 정보 업데이트
 async function updateUserInfo() {
