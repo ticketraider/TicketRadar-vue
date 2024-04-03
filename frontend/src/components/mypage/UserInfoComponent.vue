@@ -84,24 +84,20 @@ onMounted(() => {
 
 // 유저 정보 업데이트
 async function updateUserInfo() {
-  // if (password.value.length < 6) {
-  //   alert('비밀번호는 최소 6자 이상이어야 합니다.');
-  //   return; // 조건에 맞지 않으면 함수 종료
-  // }
   try {
-    await axios.put(`${apiUrl}/members/update`, {
-      nickname: nickname.value,
-      // password: password.value,
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
+    await axios.put(`${apiUrl}/members/update`, {},
+      {
+        params: {
+          nickname: nickname.value
+        },
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
     });
-
+    await fetchUserInfo();
     alert('유저 정보가 성공적으로 업데이트 되었습니다.');
     window.location.reload()
     // 업데이트 성공 후 필요한 처리 추가 (예: 페이지 새로고침, 리다이렉트 등)
-
   } catch (error) {
     console.error('유저 정보 업데이트 중 오류가 발생했습니다.', error);
     alert('유저 정보 업데이트 중 문제가 발생했습니다.');
