@@ -62,7 +62,7 @@ function register() {
 }
 
 function logout() {
-  axios.post("https://api.ticketradar.net/logout")
+  // axios.post("https://api.ticketradar.net/logout")
 
   // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   localStorage.removeItem('token');
