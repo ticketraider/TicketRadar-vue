@@ -63,7 +63,7 @@ const updatePlace = () => {
   const placeId = parseInt(Place.value.updateId)
 
   // 서버로 POST 요청 보내기
-  axios.put(`http://localhost:8080/place/${placeId}`,
+  axios.put(`https://api.ticketradar.net/place/${placeId}`,
       {
         name: Place.value.updateTitle,
         address : Place.value.address,

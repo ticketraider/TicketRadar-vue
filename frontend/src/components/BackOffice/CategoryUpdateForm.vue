@@ -15,7 +15,7 @@ const updateCategory = () => {
   const categoryId = parseInt(Category.value.updateId)
 
   // 서버로 POST 요청 보내기
-  axios.put(`http://localhost:8080/categories/${categoryId}`,
+  axios.put(`https://api.ticketradar.net/categories/${categoryId}`,
       {
         title: Category.value.updateTitle
       },

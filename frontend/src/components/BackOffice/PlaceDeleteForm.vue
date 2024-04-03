@@ -13,7 +13,7 @@ const deleteCategory = () => {
   const categoryId = parseInt(Category.value.deleteId)
 
   // 서버로 POST 요청 보내기
-  axios.delete(`http://localhost:8080/place/${categoryId}`, {
+  axios.delete(`https://api.ticketradar.net/place/${categoryId}`, {
     headers: {
       Authorization: `Bearer ${token}` // JWT 토큰을 포함한 Authorization 헤더 설정
     }

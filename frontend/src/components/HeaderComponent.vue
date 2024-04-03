@@ -17,7 +17,7 @@ const searchResult = ref('');
 const searchEvent = async () => {
   try {
     console.log("요청 : ", searchText.value);
-    const response = await axios.get('http://localhost:8080/search', {
+    const response = await axios.get('https://api.ticketradar.net/search', {
       params: {
         eventTitle: searchText.value
       }
@@ -33,7 +33,7 @@ const searchEvent = async () => {
 const cachingKeywords = async () => {
   try {
     console.log("요청 : ", searchText.value);
-    const response = await axios.get('http://localhost:8080/popularEventList', {
+    const response = await axios.get('https://api.ticketradar.net/popularEventList', {
       params: {
         limit: 5
       }
@@ -99,10 +99,10 @@ function register() {
 }
 
 function logout() {
-  // 로그아웃 로직 실행, 예: 토큰 삭제
   localStorage.removeItem('token');
   location.reload(); // 간단하게 페이지를 새로고침하여 상태를 초기화합니다.
 }
+
 
 function goToMyPage() {
   router.push({ path: "/my-page/tickets" });

@@ -12,7 +12,7 @@ const Category = ref({
 const createCategory = () => {
 
   // 서버로 POST 요청 보내기
-  axios.post('http://localhost:8080/categories',
+  axios.post('https://api.ticketradar.net/categories',
       {
         title: Category.value.createTitle
       },

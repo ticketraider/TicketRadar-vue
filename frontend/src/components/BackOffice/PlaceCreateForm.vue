@@ -54,7 +54,7 @@ const Place = ref({
 const createPlace = () => {
 
   // 서버로 POST 요청 보내기
-  axios.post('http://localhost:8080/place',
+  axios.post('https://api.ticketradar.net/place',
       {
         name: Place.value.name,
         address : Place.value.address,
