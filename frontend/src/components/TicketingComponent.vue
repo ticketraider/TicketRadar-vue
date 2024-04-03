@@ -198,6 +198,7 @@ const fetchEventDetail = async () => {
   const eventId = Number(route.params.eventId);
   try {
     const response = await axios.get(`https://www.ticketradar.net/events/${eventId}`);
+    console.log(response)
     event.value = response.data;
     // 이벤트 정보가 로드되면 해당 이벤트의 날짜로 date ref를 업데이트합니다.
     date.value = new Date(event.value.startDate);
