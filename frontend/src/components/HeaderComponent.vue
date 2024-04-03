@@ -99,9 +99,6 @@ function register() {
 }
 
 function logout() {
-  // axios.post("https://api.ticketradar.net/logout")
-
-  // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   localStorage.removeItem('token');
   location.reload(); // 간단하게 페이지를 새로고침하여 상태를 초기화합니다.
 }

@@ -88,19 +88,6 @@ const fetchEvents = async (page = 0) => {
         },
       }
     }
-    // else if( props.type === 'likes' || props.type === 'reviews' || props.type === 'rating'|| props.type === 'popularity') {
-    //   apiUrl = 'http://localhost:8080/events'
-    //   request = {
-    //     params: {
-    //       page: page,
-    //       size: pageSize,
-    //       category: selectedCategory.value,
-    //       keyword: searchKeyword.value,
-    //       sortStatus: props.type,              //  좋아요, 리뷰,
-    //       searchStatus: searchCriterion.value //  제목 or 장소
-    //     },
-    //   }
-    // }
     else {
       apiUrl = 'https://api.ticketradar.net/events'
       request = {
