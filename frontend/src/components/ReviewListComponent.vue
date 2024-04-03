@@ -86,7 +86,7 @@ export default {
 
     const fetchReviews = async (page) => {
       try {
-        const response = await axios.get('http://localhost:8080/reviews', {
+        const response = await axios.get('https://api.ticketradar.net/reviews', {
           params: {
             page: page,
             eventId: eventId,
@@ -122,7 +122,7 @@ export default {
         console.log(reviewDetail)
         const token = localStorage.getItem('token');
 
-        await axios.post('http://localhost:8080/reviews/create', reviewDetail
+        await axios.post('https://api.ticketradar.net/reviews/create', reviewDetail
             ,
             {
               headers: {

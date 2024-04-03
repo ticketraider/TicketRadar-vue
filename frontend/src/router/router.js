@@ -28,6 +28,7 @@ const routes = [
     //     component: () => import('@/views/MyTicketListViewBack.vue'),
     //     meta: { requiresAuth: true } // 로그인 필요 여부를 메타 필드로 추가
     // },
+
     {
         path: '/login',
         name: 'Login',
@@ -80,8 +81,7 @@ export const router = createRouter({
 
 // 네비게이션 가드 설정
 router.beforeEach((to, from, next) => {
-    const isAuthenticated = localStorage.getItem('token'); // 토큰 가져오기
-
+    let isAuthenticated = localStorage.getItem('token')
     if (to.path === '/login' && isAuthenticated) {
         // 이미 로그인한 사용자는 로그인 페이지에 접근할 수 없도록 리디렉션
         next('/');

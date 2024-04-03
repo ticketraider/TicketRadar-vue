@@ -88,7 +88,7 @@ export default {
         let formData = new FormData();
         formData.append('file', imageFile);
         console.log(`formData : ${formData.values}`)
-        let response = await axios.post('http://localhost:8080/events/imgUpload', formData, {
+        let response = await axios.post('https://api.ticketradar.net/events/imgUpload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -111,7 +111,7 @@ export default {
         this.eventRequest.posterImage = this.imgUrl
 
         // Axios를 사용하여 API에 POST 요청을 보냅니다.
-        await axios.post('http://localhost:8080/events', this.eventRequest, {
+        await axios.post('https://api.ticketradar.net/events', this.eventRequest, {
           headers: {
             Authorization: `Bearer ${token}` // JWT 토큰을 포함한 Authorization 헤더 설정
           },

@@ -41,7 +41,7 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post('http://localhost:8080/members/signUp', {
+        const response = await axios.post('https://api.ticketradar.net/members/signUp', {
           email: this.email,
           password: this.password,
           nickname: this.nickname
