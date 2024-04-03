@@ -18,10 +18,10 @@
           <p>현재 닉네임: {{ currentUserNickname }}</p>
           <p>현재 이메일: {{ currentUserEmail }}</p>
         </div>
-        <div class="mb-3">
-          <label class="form-label">비밀번호</label>
-          <input type="password" v-model="password" placeholder="비밀번호를 입력해주세요" class="form-control">
-        </div>
+<!--        <div class="mb-3">-->
+<!--          <label class="form-label">비밀번호</label>-->
+<!--          <input type="password" v-model="password" placeholder="비밀번호를 입력해주세요" class="form-control">-->
+<!--        </div>-->
         <div class="mb-3">
           <label class="form-label">닉네임</label>
           <input type="text" v-model="nickname" placeholder="닉네임을 입력해주세요" class="form-control">
@@ -43,7 +43,7 @@ import axios from 'axios';
 import {jwtDecode} from "jwt-decode";
 
 // 상태 관리
-const password = ref("");
+// const password = ref("");
 const nickname = ref("");
 // const currentPassword = ref("");
 const currentUserNickname = ref("");
@@ -84,14 +84,14 @@ onMounted(() => {
 
 // 유저 정보 업데이트
 async function updateUserInfo() {
-  if (password.value.length < 6) {
-    alert('비밀번호는 최소 6자 이상이어야 합니다.');
-    return; // 조건에 맞지 않으면 함수 종료
-  }
+  // if (password.value.length < 6) {
+  //   alert('비밀번호는 최소 6자 이상이어야 합니다.');
+  //   return; // 조건에 맞지 않으면 함수 종료
+  // }
   try {
     await axios.put(`${apiUrl}/members/update`, {
       nickname: nickname.value,
-      password: password.value,
+      // password: password.value,
     }, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -111,7 +111,6 @@ async function fetchUserInfo() {
 
   const decodedToken = jwtDecode(token);
   const memberId = decodedToken.sub;
-  console.log(token)
 
   try {
     const response = await axios.get(`${apiUrl}/members/${memberId}`);
