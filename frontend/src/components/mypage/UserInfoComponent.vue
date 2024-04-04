@@ -132,7 +132,7 @@ async function deleteAccount() {
       }, // DELETE 요청 시 본문을 보내려면 'data' 속성 사용
     });
 
-
+    localStorage.removeItem('token');
     alert('계정이 성공적으로 삭제되었습니다.');
     window.location.reload()
     // 계정 삭제 성공 후 필요한 처리 추가 (예: 로그아웃, 홈 페이지로 리다이렉트)
