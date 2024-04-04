@@ -41,8 +41,7 @@ const likeEvent = async () => {
       }
     });
     console.log('좋아요 성공!');
-    event.value.likeCount += 1; // 좋아요 수를 직접 증가시킴
-    // window.location.reload()를 제거합니다.
+    window.location.reload()
   } catch (error) {
     console.error('좋아요 처리 중 오류가 발생했습니다:', error);
   }
