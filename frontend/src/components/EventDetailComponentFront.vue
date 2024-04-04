@@ -37,12 +37,12 @@ const likeEvent = async () => {
   try {
     await axios.post(`https://api.ticketradar.net/likes?eventId=${eventId}`, {}, {
       headers: {
-        Authorization: `Bearer ${token}` // 인증 토큰을 Bearer 토큰으로 사용
+        Authorization: `Bearer ${token}`
       }
     });
     console.log('좋아요 성공!');
-    window.location.reload()
-    // 필요하다면 여기에서 좋아요 카운트를 업데이트하는 로직을 추가할 수 있습니다.
+    event.value.likeCount += 1; // 좋아요 수를 직접 증가시킴
+    // window.location.reload()를 제거합니다.
   } catch (error) {
     console.error('좋아요 처리 중 오류가 발생했습니다:', error);
   }

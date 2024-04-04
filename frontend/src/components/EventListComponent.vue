@@ -3,7 +3,9 @@
     <div class="event-grid">
       <v-card v-for="event in eventList" :key="event.id" class="event-card">
         <v-card class="mx-auto" style="width: 300px; background-color: white">
-          <v-img :src="event.posterImage" contain></v-img>
+          <v-btn @click="reserve(event.id)" >
+            <v-img :src="event.posterImage" contain></v-img>
+          </v-btn>
           <v-card-title>{{ event.title }}</v-card-title>
           <div style="display:flex; margin-bottom: 10px;">
             <v-card-subtitle>리뷰 {{ event.reviewCount }}</v-card-subtitle>
