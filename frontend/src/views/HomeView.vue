@@ -2,6 +2,7 @@
   <div>
     <main style="display: flex; flex-direction: column; gap: 30px; align-items: center">
       <div style="width: 90%; display: flex; flex-direction: column; margin-top: 15px;">
+        <h5>모든 실시간랭킹은 10분마다 새로 적용됩니다.</h5>
         <h3>✨인기 검색어 순 TOP.5</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 20px">
           <EventList :type="'popularity'"/>

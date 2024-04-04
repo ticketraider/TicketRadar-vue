@@ -3,7 +3,9 @@
     <div class="event-grid">
       <v-card v-for="event in eventList" :key="event.id" class="event-card">
         <v-card class="mx-auto" style="width: 300px; background-color: white">
-          <v-img :src="event.posterImage" contain></v-img>
+          <v-btn @click="reserve(event.id)" >
+            <v-img :src="event.posterImage" contain></v-img>
+          </v-btn>
           <v-card-title>{{ event.title }}</v-card-title>
           <div style="display:flex; margin-bottom: 10px;">
             <v-card-subtitle>리뷰 {{ event.reviewCount }}</v-card-subtitle>
@@ -88,19 +90,6 @@ const fetchEvents = async (page = 0) => {
         },
       }
     }
-    // else if( props.type === 'likes' || props.type === 'reviews' || props.type === 'rating'|| props.type === 'popularity') {
-    //   apiUrl = 'http://localhost:8080/events'
-    //   request = {
-    //     params: {
-    //       page: page,
-    //       size: pageSize,
-    //       category: selectedCategory.value,
-    //       keyword: searchKeyword.value,
-    //       sortStatus: props.type,              //  좋아요, 리뷰,
-    //       searchStatus: searchCriterion.value //  제목 or 장소
-    //     },
-    //   }
-    // }
     else {
       apiUrl = 'https://api.ticketradar.net/events'
       request = {
