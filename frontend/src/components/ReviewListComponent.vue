@@ -24,7 +24,6 @@
       </button>
     </div>
   </form>
-
   <div class="review-list">
     <v-row>
       <v-col v-for="review in reviewList" :key="review.id" cols="12">
