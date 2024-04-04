@@ -12,7 +12,6 @@
             density="comfortable"
         ></v-rating>
       </div>
-
     </div>
     <div class="mb-3">
       <input type="text" placeholder="리뷰 내용" v-model="reviewContent" class="form-control" id="exampleInputPassword1">
