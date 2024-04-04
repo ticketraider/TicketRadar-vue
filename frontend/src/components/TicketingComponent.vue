@@ -138,7 +138,7 @@
                     </tbody>
                   </v-table>
                 </v-sheet>
-                <div>
+                <div style="text-align: right; margin-top: 10px;">
                   <button type="button" class="btn btn-primary" @click="reservationFinished">예매하기</button>
                 </div>
               </template>
