@@ -12,6 +12,7 @@
             <v-card-subtitle>좋아요 {{ event.likeCount }}</v-card-subtitle>
           </div>
 
+
           <v-card-subtitle>{{ event.eventInfo }}</v-card-subtitle>
           <v-card-actions>
             <v-btn @click="reserve(event.id)" color="#0a0925" variant="text">
