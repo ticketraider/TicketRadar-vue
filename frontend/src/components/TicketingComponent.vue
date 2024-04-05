@@ -290,9 +290,12 @@ function reservationFinished() {
   }
 }
 const submitTicketReservation = async () => {
+  const selectedDate = new Date(date.value);
+// 필요한 경우, selectedDate를 조작
+  selectedDate.setHours(selectedDate.getHours()+9);
   const reservationDetails = {
     eventId: event.value.id,
-    date: date.value.toJSON(),
+    date: selectedDate.toJSON(),
     seatList: selectedSeats.value.map(seat => ({
       ticketGrade: seat.grade,
       seatNumber: seat.number,
